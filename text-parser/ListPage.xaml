@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="text_parser.ListPage"
+             x:Name="ListContext">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame BackgroundColor="#1e1e1e" CornerRadius="0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Users List" TextColor="White" FontSize="Large" HorizontalOptions="FillAndExpand" Padding="5"></Label>
+                    <Button Text="Show Raw Data" BackgroundColor="Transparent" TextColor="White" Clicked="ShowRawData"></Button>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Vertical" Padding="10">
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="User with most Subjects: "></Label>
+                    <Label x:Name="UserWithMostSubjects" Text="None" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Users over 30: "></Label>
+                    <Label x:Name="UserOver30" Text="None" FontAttributes="Bold"></Label>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="Users from Budapest "></Label>
+                    <Label x:Name="UsersFromBudapest" Text="0" FontAttributes="Bold"></Label>
+                </StackLayout>
+            </StackLayout>
+            <ListView 
+                x:Name="userList" 
+                BackgroundColor="#eeeeee" 
+                HasUnevenRows="True"
+                ItemsSource="{Binding Source={x:Reference ListContext}, Path=BindingContext.CurrentList}" IsVisible="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout 
+                                Orientation="Vertical"
+                                VerticalOptions="FillAndExpand" 
+                                Padding="20" 
+                                >
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium"></Label>
+                                    <Label Text="{Binding Age}" Padding="3"></Label>
+                                    <Label 
+                                        Text="Married" 
+                                        IsVisible="{Binding IsMarried}" 
+                                        Padding="5"
+                                        BackgroundColor="#1e1e1e"
+                                        TextColor="White"></Label>
+                                    <Label 
+                                        Text="Graduated" 
+                                        IsVisible="{Binding HasDiploma}"
+                                        Padding="5"
+                                        BackgroundColor="#1e1e1e"
+                                        TextColor="White">
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Profession: "></Label>
+                                    <Label Text="{Binding Profession}"></Label>
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="City: "></Label>
+                                    <Label Text="{Binding City}" FontAttributes="Italic"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Subjects: " VerticalOptions="FillAndExpand" LineBreakMode="NoWrap"></Label>
+                                    <Label Text="{Binding SubString}" FontAttributes="Italic"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                                    <Button 
+                                        Text="Delete"
+                                        BackgroundColor="#dfdfdf"
+                                        TextColor="Black" 
+                                        FontSize="Subtitle"
+                                        FontAttributes="None"
+                                        TextTransform="None"
+                                        Clicked="RemoveUser" 
+                                        CornerRadius="5"
+                                        CommandParameter="{Binding .}" 
+                                        ></Button>
+                                    <Button 
+                                        Text="Edit" 
+                                        BackgroundColor="#dfdfdf"
+                                        TextColor="Black"
+                                        FontAttributes="None"
+                                        TextTransform="None"
+                                        Clicked="EditUser"
+                                        CommandParameter="{Binding .}" 
+                                        CornerRadius="5">
+                                    </Button>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add" Clicked="AddUser"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

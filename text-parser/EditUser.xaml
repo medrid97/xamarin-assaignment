@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="text_parser.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#1e1e1e" CornerRadius="0">
+            <Label Text="Edit User" x:Name="Title" TextColor="White" FontSize="Large"></Label>
+        </Frame>
+        <StackLayout Padding="10">
+            <Editor Text="" Placeholder="Name" TextTransform="Default" x:Name="name" Keyboard="Text" BindingContext="nameValue"/>
+            <Editor Text="" Placeholder="Age" x:Name="age" Keyboard="Numeric"/>
+            <Editor Text="" Placeholder="City" x:Name="city" Keyboard="Text"/>
+            <Editor Text="" Placeholder="Profession" x:Name="profession" Keyboard="Text"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Is married"/>
+                <CheckBox IsChecked="False" x:Name="married"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Has diploma"/>
+                <CheckBox IsChecked="False" x:Name="diploma"/>
+            </StackLayout>
+            <Editor Text="" Placeholder="Subjects" x:Name="subjects" Keyboard="Text" VerticalOptions="EndAndExpand"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Save User" Clicked="OnSaveClick" HorizontalOptions="FillAndExpand"/>
+                <Button Text="List" Clicked="OnListClick" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
